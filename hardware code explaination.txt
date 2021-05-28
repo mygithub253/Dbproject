@@ -1,0 +1,6 @@
+#include <ESP8266WiFi.h>
+#include <FirebaseArduino.h>
+imports modules required for esp8266 and for pushing to firebase
+
+ Firebase.pushInt("bgvalue", val);
+pushes values to firebase under bgvalue

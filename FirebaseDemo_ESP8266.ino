@@ -21,10 +21,10 @@
 #include <FirebaseArduino.h>
 
 // Set these to run example.
-#define FIREBASE_HOST ""
-#define FIREBASE_AUTH ""
-#define WIFI_SSID ""
-#define WIFI_PASSWORD ""
+#define FIREBASE_HOST "ADD HOST NAME"
+#define FIREBASE_AUTH "ADD FIREBASE SECRET"
+#define WIFI_SSID "ADD WIFI NAME"
+#define WIFI_PASSWORD "ADD WIFI PASSWORD"
 int photoDiode=2; 
 void setup() {
   Serial.begin(9600);
