@@ -33,7 +33,7 @@ public class homepage extends AppCompatActivity {
     private Button save,graph;
     private String unique,debug;
     private Integer sum,avg,count=0,globalcount;
-    private Double A1C=0.0,bmi=0.0;
+    private Double A1C=0.0,bmi=0.0;                         //initialises variables
     private TextView textView;
     Gmailsender sender;
     Integer intbp;
@@ -44,9 +44,9 @@ public class homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
         Bundle extra =getIntent().getExtras();
         String key = extra.getString("key");
-        bloodglucose = extra.getString("bgval");
+        bloodglucose = extra.getString("bgval");                                        //get blood pressure and weight values from edit text
         double intglucose = Double.parseDouble(bloodglucose);
-        intglucose =  (0.13675)*Math.pow(intglucose,2) + (-148.15865)*Math.pow(intglucose,1)+ (40228.0908);
+        intglucose =  (0.13675)*Math.pow(intglucose,2) + (-148.15865)*Math.pow(intglucose,1)+ (40228.0908);  //using polynomial equation to relate sensor value to glucose level
         int bglu = (int)intglucose;
         textView=findViewById(R.id.textView2);
         bloodglucose = Integer.toString(bglu);
@@ -62,7 +62,7 @@ public class homepage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HashMap<String,Object> map = new HashMap<>();
-                String bloop= bp.getText().toString().trim();
+                String bloop= bp.getText().toString().trim();                   //enter all the vitals from app into a map object
                 //String bloodg=bg.getText().toString().trim();
                 String bloodg = bloodglucose.trim();
                 String weight=w.getText().toString().trim();
@@ -80,14 +80,14 @@ public class homepage extends AppCompatActivity {
                     return;
                 }*/
                 if(weight.isEmpty()){
-                    w.setError("field empty");
+                    w.setError("field empty");                          // check if fields are empty or filled
                     w.requestFocus();
                     //passwordreg.setOnEditorActionListener(editorlisten);
                     return;
                 }
                 map.put("date",DateToday);
                 map.put("bp",bloop);
-                map.put("bg",bloodg);
+                map.put("bg",bloodg);                                   //populate map object with values
                 map.put("weight",weight);
                 intbp =Integer.parseInt(bp.getText().toString());
 
@@ -106,7 +106,7 @@ public class homepage extends AppCompatActivity {
                                                     Toast.makeText(homepage.this,"Updated",Toast.LENGTH_LONG).show();
                                                 }
                                             })
-                                            .addOnFailureListener(new OnFailureListener() {
+                                            .addOnFailureListener(new OnFailureListener() {                     //push values into firebase under Users => data 
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     Log.i("jfbvkj", "onFailure: "+e.toString());
@@ -125,7 +125,7 @@ public class homepage extends AppCompatActivity {
                                                 Map<String,Object> map=(Map<String, Object>) ds.getValue();
                                                 Object price=map.get("bg");
                                                 int pvalue=Integer.parseInt(String.valueOf(price));
-                                                sum+=pvalue;
+                                                sum+=pvalue;                                                //calculate a1c value 
                                                 avg=sum/8;
                                                 A1C=(avg+46.7)/28.7;
                                             }
@@ -145,7 +145,7 @@ public class homepage extends AppCompatActivity {
                                                 if(data.getKey().equals("height")){
                                                     height = data.getValue().toString();
                                                 }
-                                                if(data.getKey().equals("age")){
+                                                if(data.getKey().equals("age")){                        //get age and height
                                                     age= data.getValue().toString();
                                                 }
                                             }
@@ -169,7 +169,7 @@ public class homepage extends AppCompatActivity {
                                                     int weight= Integer.parseInt(w.getText().toString());
                                                     double heightd=Double.parseDouble(height);
                                                     bmi=weight/(heightd*heightd);
-                                                    intent.putExtra("BMI",Double.toString(bmi));
+                                                    intent.putExtra("BMI",Double.toString(bmi));                    //send a1c, avgbp, bmi and age to report page
                                                     intent.putExtra("bgavg",Double.toString(avg));
                                                     intent.putExtra("age",age);
                                                     startActivity(intent);
@@ -199,7 +199,7 @@ public class homepage extends AppCompatActivity {
                                             for (DataSnapshot data : snapshot.getChildren()) {
                                                 if(data.getKey().equals("fullname")){
                                                     name = data.getValue().toString();
-                                                    body="Your patient"+" "+name+" "+"has been advised medical attention";
+                                                    body="Your patient"+" "+name+" "+"has been advised medical attention";          //body of email that is sent to doctor if a1c found abnormal
                                                 }}
                                         }
 
@@ -251,7 +251,7 @@ public class homepage extends AppCompatActivity {
                 }
                 else{
                     CharSequence text="NO DATA TO DISPLAY";
-                    Toast.makeText(getApplicationContext(),text, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),text, Toast.LENGTH_LONG).show();                 //display toast message if edit text is empty
             }
                 }
 
@@ -272,7 +272,7 @@ public class homepage extends AppCompatActivity {
         protected Void doInBackground(Void... mApi) {
             try {
                 // Add subject, Body, your mail Id, and receiver mail Id.
-                sender.sendMail(subject, body, user, remail);
+                sender.sendMail(subject, body, user, remail);                                   //sends subject, body, user, email to Gmailsender.java
                 Log.d("send", "done");
             }
             catch (Exception ex) {
