@@ -28,12 +28,12 @@
 int photoDiode=2; 
 void setup() {
   Serial.begin(9600);
-   pinMode(photoDiode,OUTPUT);  
-   digitalWrite(photoDiode,HIGH);  
+   pinMode(photoDiode,OUTPUT);      //gets analog value from sensor"
+   digitalWrite(photoDiode,HIGH);   //sends 5 v to phtodiode"
   // connect to wifi.
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("connecting");
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) {      //begin firebase connection
     Serial.print(".");
     delay(500);
   }
@@ -48,16 +48,16 @@ int n = 0;
 
 void loop() {
   // set value
-  int val=analogRead(A0); // connect to A0 no need to declare  
+  int val=analogRead(A0); // read A0 value
   Serial.println(val); 
   Firebase.pushInt("bgvalue", val);
   // handle error
-  if (Firebase.failed()) {
+  if (Firebase.failed()) {                 // push to firebase
       Serial.print("setting /number failed:");
       Serial.println(Firebase.error());  
       return;
   }
-  delay(2000);
+  delay(2000);    ///adding 2sec delay
 
 
 }
