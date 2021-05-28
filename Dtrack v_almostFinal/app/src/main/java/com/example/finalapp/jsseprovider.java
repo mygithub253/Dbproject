@@ -9,7 +9,7 @@ public final class jsseprovider extends Provider {
             public Void run() {
                 put("SSLContext.TLS",
                         "org.apache.harmony.xnet.provider.jsse.SSLContextImpl");
-                put("Alg.Alias.SSLContext.TLSv1", "TLS");
+                put("Alg.Alias.SSLContext.TLSv1", "TLS");                                       //acts as a client for sending email
                 put("KeyManagerFactory.X509",
                         "org.apache.harmony.xnet.provider.jsse.KeyManagerFactoryImpl");
                 put("TrustManagerFactory.X509",
