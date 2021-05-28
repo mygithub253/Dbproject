@@ -36,7 +36,7 @@ public class report extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         A1C = extras.getString("A1C").substring(0,4);
         BP = extras.getString("BP");
-        BMI = extras.getString("BMI").substring(0,4);
+        BMI = extras.getString("BMI").substring(0,4);           //get the value A1C, bp, bmi, age passed from intent ie homepage.java
         BGAVG = extras.getString("bgavg");
         AGE = extras.getString("age");
         A1CO =Double.parseDouble(A1C);
@@ -51,7 +51,7 @@ public class report extends AppCompatActivity {
             aic.setText("A1C: "+A1C+"\n\nYour sugar levels are in Pre-Diabetic stage");
             aic.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) {                   //checking for which range a1c falls under
                     Intent intent=new Intent(report.this,suggetions.class);
                     intent.putExtra("KEY","1");
                     startActivity(intent);
@@ -77,7 +77,7 @@ public class report extends AppCompatActivity {
             bp.setText("BP: "+BP+"\n\nYou may have hypotension");
             bp.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) {                   //checking for which range bp falls under
                     Intent intent=new Intent(report.this,suggetions.class);
                     intent.putExtra("KEY","3");
                     startActivity(intent);
@@ -102,7 +102,7 @@ public class report extends AppCompatActivity {
             bmi.setText("bmi:"+BMI+"\n\nyou are underweight");
             bmi.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) {                                   //checking for which range bmi falls under
                     Intent intent=new Intent(report.this,suggetions.class);
                     intent.putExtra("KEY","5");
                     startActivity(intent);
@@ -131,7 +131,7 @@ public class report extends AppCompatActivity {
                 if(val3!=null&&val4!=null){
                     OkHttpClient okHttpClient=new OkHttpClient();
                     RequestBody formbody= new FormBody.Builder().add("value1",val1).add("value2",val2).add("value3",val3).add("value5",val4).build();
-                    Request request=new Request.Builder().url("http://18.222.224.63/predict").post(formbody).build();
+                    Request request=new Request.Builder().url("http://18.222.224.63/predict").post(formbody).build();                       //send data to AWS to get prediction
                     okHttpClient.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -152,7 +152,7 @@ public class report extends AppCompatActivity {
                                     try {
                                         int ans= Integer.parseInt(response.body().string());
                                         if(ans==0){
-                                            pred.setText("We have predicted a low risk of diabetes in the future");
+                                            pred.setText("We have predicted a low risk of diabetes in the future");                     //get the prediction response from AWS 
                                         }
                                         else if (ans==1){
                                             pred.setText("we have predicted a high risk of diabetes\n\nplease consult your doctor");
@@ -180,7 +180,7 @@ public class report extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode){
             case KeyEvent.KEYCODE_BACK:
-                Intent intent=new Intent(report.this,homepage.class);
+                Intent intent=new Intent(report.this,homepage.class);               //go back to homepage.java
                 startActivity(intent);
                 return true;
             case KeyEvent.KEYCODE_HOME:
