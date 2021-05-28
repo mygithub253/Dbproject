@@ -29,7 +29,7 @@ public class pressure extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pressure);
-        Intent intent=getIntent();
+        Intent intent=getIntent();          //initialise variables
         String key=intent.getExtras().getString("unq");
         /*id=findViewById(R.id.id);
         button =findViewById(R.id.button2);*/
@@ -44,10 +44,10 @@ public class pressure extends AppCompatActivity {
                     count=(int) snapshot.getChildrenCount();
 
                 }
-                else{
+                else{                                       //get total number of entries by the user
                     count=0;
                 }
-            }
+            }       
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -66,7 +66,7 @@ public class pressure extends AppCompatActivity {
                     if(count<=7){
                         data.add(new BarEntry(i, pvalue));
                     }
-                    else if(i>=count-7){
+                    else if(i>=count-7){                                //get patient blood pressure from firebase for last 7 entries
                         data.add(new BarEntry(i, pvalue));
 
                     }
@@ -76,7 +76,7 @@ public class pressure extends AppCompatActivity {
                 barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
                 barDataSet.setValueTextColor(Color.WHITE);
                 barDataSet.setValueTextSize(15f);
-                BarData barData = new BarData(barDataSet);
+                BarData barData = new BarData(barDataSet);                      //display as bar graph
                 barChart.setFitBars(true);
                 barChart.setData(barData);
                 barChart.getDescription().setText("set example");
