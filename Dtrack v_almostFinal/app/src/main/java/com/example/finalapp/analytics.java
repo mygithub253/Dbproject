@@ -23,7 +23,7 @@ public class analytics extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(analytics.this,pressure.class);
-                intent.putExtra("unq",key);
+                intent.putExtra("unq",key);                                             // redirects user to blood pressure graph 
                 startActivity(intent);
             }
         });
@@ -31,7 +31,7 @@ public class analytics extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                Intent intent=new Intent(analytics.this,glucose.class);
-                intent.putExtra("unq",key);
+                intent.putExtra("unq",key);                                             // redirects user to blood glucose graph
                 startActivity(intent);
 
             }
@@ -40,7 +40,7 @@ public class analytics extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(analytics.this,mass.class);
-                intent.putExtra("unq",key);
+                intent.putExtra("unq",key);                                             // redirects user to weight graph
                 startActivity(intent);
 
             }
@@ -49,7 +49,7 @@ public class analytics extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(analytics.this,listreport.class);
-                intent.putExtra("unq",key);
+                intent.putExtra("unq",key);                                                 // redirects user to patient history report
                 startActivity(intent);
 
             }
