@@ -23,7 +23,7 @@ public class register_user extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     private EditText fullname,age,emailreg,passwordreg,docname,docemail,phone1,height;
     private ProgressBar progressbar;
-    private TextView registerreg,homebutton;
+    private TextView registerreg,homebutton;                                    //initialise variable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class register_user extends AppCompatActivity implements View.OnClickList
         registerreg=(Button)findViewById(R.id.registerreg);
         registerreg.setOnClickListener(this);
         fullname=(EditText)findViewById(R.id.fullname);
-        age=(EditText)findViewById(R.id.age);
+        age=(EditText)findViewById(R.id.age);                                   //gets data from edit text on app and saves them into variables
         emailreg=(EditText)findViewById(R.id.emailreg);
         passwordreg=(EditText)findViewById(R.id.passwordreg);
         docname=(EditText)findViewById(R.id.docname);
@@ -65,7 +65,7 @@ public class register_user extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.homebutton:
                 startActivity(new Intent(register_user.this,MainActivity.class));
-                break;
+                break;                                  //go to login page if home button is pressed
         }
     }
     private TextView.OnEditorActionListener editorlisten =new TextView.OnEditorActionListener() {
@@ -76,7 +76,7 @@ public class register_user extends AppCompatActivity implements View.OnClickList
                     closeKeyboard();
                     break;
                 case EditorInfo.IME_ACTION_SEND:
-                    closeKeyboard();
+                    closeKeyboard();                        //keyboard UI changes to next button
                     break;
             }
             return false;
@@ -93,7 +93,7 @@ public class register_user extends AppCompatActivity implements View.OnClickList
         }
         String pemail= emailreg.getText().toString().trim();
         String ppassword= passwordreg.getText().toString().trim();
-        String docn= docname.getText().toString().trim();
+        String docn= docname.getText().toString().trim();                           //getting edit text value and storing it to variable
         String doce= docemail.getText().toString().trim();
         String number1=phone1.getText().toString().trim();
         String high=height.getText().toString().trim();
@@ -114,7 +114,7 @@ public class register_user extends AppCompatActivity implements View.OnClickList
         }
         if(pemail.isEmpty()){
             emailreg.setError("Email is required!!");
-            emailreg.requestFocus();
+            emailreg.requestFocus();                                                //checking if any of the edit text fields are empty
             return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(pemail).matches()){
@@ -164,8 +164,8 @@ public class register_user extends AppCompatActivity implements View.OnClickList
                                               if(task.isSuccessful()){
                                                   User user= new User(pname,page,pemail,doce,docn,number1,high);
                                                   FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                          .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                      @Override
+                                                          .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {                        
+                                                      @Override                                                     //registered on firebase
                                                       public void onComplete(@NonNull Task<Void> task) {
                                                           if (task.isSuccessful()){
                                                               Toast.makeText(register_user.this,"You have been registered!!",Toast.LENGTH_LONG).show();
@@ -182,6 +182,6 @@ public class register_user extends AppCompatActivity implements View.OnClickList
                                           }
                                       }
                 );
-        startActivity(new Intent(register_user.this,MainActivity.class));
+        startActivity(new Intent(register_user.this,MainActivity.class));                   //go back to main activity
     }
 }
