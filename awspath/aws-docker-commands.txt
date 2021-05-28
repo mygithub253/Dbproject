@@ -1,0 +1,12 @@
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+
+============================================
+
+
+docker build -t app-iris .
+docker run -p 80:80 app-iris .
+docker container ls
+docker stop [container_name]
+
+Ipv4 18.222.224.63
