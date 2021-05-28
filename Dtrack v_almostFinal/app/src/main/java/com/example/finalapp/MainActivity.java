@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView register;
     private EditText password,email;
     private Button button;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;                 //intialize variables
     private String bgvalue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String val= snapshot.getValue().toString();
                 val=val.substring(1,val.length()-1);
                 String[] sparate=val.split("=");
-                bgvalue=sparate[1];
+                bgvalue=sparate[1];                                                        //gets sensor data from firebase and sends to homepage.java on sucessful login
             }
 
             @Override
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.register:
-                startActivity(new Intent(this,register_user.class));
+                startActivity(new Intent(this,register_user.class));         //goes to registration page
                 break;
             case R.id.button:
                 userlogin();
@@ -98,24 +98,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String auemail= email.getText().toString().trim();
         String aupass=password.getText().toString().trim();
         if(auemail.isEmpty()){
-            email.setError("Email is required!!");
+            email.setError("Email is required!!");                                //toast message is displayed when email is empty
             email.requestFocus();
             //emailreg.setOnEditorActionListener(editorlisten);
             return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(auemail).matches()){
-            email.setError("Invalid email!!");
+            email.setError("Invalid email!!");                                      //toast message is displayed when email is inavlid
             email.requestFocus();
             //emailreg.setOnEditorActionListener(editorlisten);
             return;
         }
         if(aupass.isEmpty()){
-            password.setError("Full Name is required!!");
+            password.setError("Full Name is required!!");                           //toast message is displayed when name is empty
             password.requestFocus();
             //passwordreg.setOnEditorActionListener(editorlisten);
             return;
         }
-        if(aupass.length()<5){
+        if(a/upass.length()<5){
             password.setError("Password should have minimum 5 characters!!");
             password.requestFocus();
             //passwordreg.setOnEditorActionListener(editorlisten);
@@ -132,11 +132,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
-                        public void run() {
+                        public void run() {                                                          //authenticates email and password 
                             // Do something after 5s = 5000ms
                             Intent intent=new Intent(MainActivity.this,homepage.class);
                             intent.putExtra("key",auemail);
-                            intent.putExtra("bgval",bgvalue);
+                            intent.putExtra("bgval",bgvalue);                                               // sends the sensor value
                             startActivity(intent);
                             }
                     }, 10000);
