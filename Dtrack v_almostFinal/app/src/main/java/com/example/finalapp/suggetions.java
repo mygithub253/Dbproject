@@ -24,7 +24,7 @@ private TextView suggest;
             case 1:
                 suggest.setText("Boost your intake of vegetables and fresh fruit.\n" +
                         "\nEat more low-fat dairy products and beans.\n" +
-                        "\nChoose whole grains more often.\n" +
+                        "\nChoose whole grains more often.\n" +                                                         //suggestions if A1C is below expected range
                         "\nChoose fish, poultry, and lean meat instead of fatty red meat or processed meat.\n" +
                         "\nReduce the amount of sweets you have.");
                 break;
@@ -33,7 +33,7 @@ private TextView suggest;
                         "\nEat less salt.\n" +
                         "\nEat less red and processed meat.\n" +
                         "\nEat more fruit and veg.\n" +
-                        "\nChoose healthier fats.\n" +
+                        "\nChoose healthier fats.\n" +                                      //suggestions if A1C is above expected range
                         "\nCut down on added sugar.\n" +
                         "\nBe smart with snacks.\n" +
                         "\nDrink alcohol sensibly.\n"+ "Consult your Physician.");
@@ -41,7 +41,7 @@ private TextView suggest;
             case 3:
                 suggest.setText("Eat small meals more frequently. \n" +
                         "\nDrink more water and limit alcohol. \n" +
-                        "\nIf you exercise outdoors in extreme heat, take frequent breaks and be sure to increase hydration efforts.\n" +
+                        "\nIf you exercise outdoors in extreme heat, take frequent breaks and be sure to increase hydration efforts.\n" +           //suggestions if bp is below expected range
                         "\nAvoid prolonged bed rest.\n" +
                         "\nWear compression stockings. ");
                 break;
@@ -50,14 +50,14 @@ private TextView suggest;
                         "\nExercise regularly.\n" +
                         "\nEat a healthy diet.\n" +
                         "\nReduce sodium in your diet.\n" +
-                        "\nLimit the amount of alcohol you drink.\n" +
+                        "\nLimit the amount of alcohol you drink.\n" +          //suggestions if bp is above expected range
                         "\nQuit smoking.\n" +
                         "\nCut back on caffeine.\n" +
                         "\nReduce your stress.");
                 break;
             case 5:
                 suggest.setText("Add healthy calories by adding nut or seed toppings, cheese, almonds, sunflower seeds, fruit, wheat toast.\n" +
-                        "\nGo nutrient dense.Consider high-protein meats, which can help you to build muscle, choose nutritious carbohydrates, such as brown rice and other whole grains. \n" +
+                        "\nGo nutrient dense.Consider high-protein meats, which can help you to build muscle, choose nutritious carbohydrates, such as brown rice and other whole grains. \n" +                     //suggestions if bmi is below expected range
                         "\nSnack away. Consider options like trail mix, protein bars or drinks, and crackers with hummus or peanut butter.");
                 break;
             case 6:
@@ -65,7 +65,7 @@ private TextView suggest;
                         "\nAvoid sugary drinks and fruit juice.\n" +
                         "\nDrink water before meals.\n" +
                         "\nChoose weight-loss-friendly foods.\n" +
-                        "\nEat soluble fiber.\n" +
+                        "\nEat soluble fiber.\n" +                                  //suggestions if bmi is above expected range
                         "\nDrink coffee or tea.\n" +
                         "\nBase your diet on whole foods.\n" +
                         "\nEat slowly.\n" +
