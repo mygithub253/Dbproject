@@ -72,7 +72,7 @@ public class glucose extends AppCompatActivity {
 
                 }
                 else{
-                    count=0;
+                    count=0;                                            //gets the count of the number of data added
                 }
             }
 
@@ -91,7 +91,7 @@ public class glucose extends AppCompatActivity {
                     Object price = map.get("bg");
                     int pvalue = Integer.parseInt(String.valueOf(price));
                     if(count<=7){
-                        data.add(new BarEntry(i, pvalue));
+                        data.add(new BarEntry(i, pvalue));                              //gets the values from the last 7 entries of glucose in firebase
                     }
                     else if(i>=count-7){
                         data.add(new BarEntry(i, pvalue));
@@ -99,14 +99,14 @@ public class glucose extends AppCompatActivity {
                     }
                     i+=1;
                 }
-                BarDataSet barDataSet = new BarDataSet(data, "Blood Glucose");
+                BarDataSet barDataSet = new BarDataSet(data, "Blood Glucose");              
                 barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
                 barDataSet.setValueTextColor(Color.WHITE);
                 barDataSet.setValueTextSize(15f);
                 BarData barData = new BarData(barDataSet);
                 barChart.setFitBars(true);
                 barChart.setData(barData);
-                barChart.getDescription().setText("set example");
+                barChart.getDescription().setText("set example");                               // creates a bar chart for the obtained values
                 barChart.animateY(2000);
                 barChart.getAxisLeft().setAxisMinimum(50f);
                 barChart.getAxisLeft().setAxisMaximum(250f);
