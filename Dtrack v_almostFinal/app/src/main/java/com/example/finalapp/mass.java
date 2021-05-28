@@ -33,7 +33,7 @@ public class mass extends AppCompatActivity {
         /*id=findViewById(R.id.id);
         button =findViewById(R.id.button2);*/
         BarChart barChart = findViewById(R.id.barChart);
-        ArrayList<BarEntry> data = new ArrayList<>();
+        ArrayList<BarEntry> data = new ArrayList<>();                   //initialise empty arraylist
         mas=findViewById(R.id.massid);
         mas.setText("Weight Chart");
         FirebaseDatabase.getInstance().getReference().child("Users").child(key).child("data").addValueEventListener(new ValueEventListener() {
@@ -61,7 +61,7 @@ public class mass extends AppCompatActivity {
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     Map<String, Object> map = (Map<String, Object>) ds.getValue();
                     Object price = map.get("weight");
-                    int pvalue = Integer.parseInt(String.valueOf(price));
+                    int pvalue = Integer.parseInt(String.valueOf(price));               //get weight data from firebase for 7 entries
                     if(count<=7){
                         data.add(new BarEntry(i, pvalue));
                     }
@@ -77,7 +77,7 @@ public class mass extends AppCompatActivity {
                 barDataSet.setValueTextSize(15f);
                 BarData barData = new BarData(barDataSet);
                 barChart.setFitBars(true);
-                barChart.setData(barData);
+                barChart.setData(barData);                                                  //display as bar graph
                 barChart.getDescription().setText("set example");
                 barChart.animateY(2000);
                 barChart.getAxisLeft().setAxisMinimum(30f);
@@ -86,7 +86,7 @@ public class mass extends AppCompatActivity {
                 barChart.getAxisLeft().setTextColor(Color.WHITE);
             }
 
-
+                                                        
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
