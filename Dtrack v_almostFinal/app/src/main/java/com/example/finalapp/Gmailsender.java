@@ -40,13 +40,13 @@ public class Gmailsender extends javax.mail.Authenticator {
         session = Session.getDefaultInstance(props, this);
     }
     protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(user, password);
+        return new PasswordAuthentication(user, password);             // passwordauthentication() gets user email and password from homepage.java
     }
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
         try{
             MimeMessage message = new MimeMessage(session);
             DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
-            message.setSender(new InternetAddress(sender));
+            message.setSender(new InternetAddress(sender));             //sendmail() gets subject body sender mailid and finally sends email to doctor when A1c report is abnormal
             message.setSubject(subject);
             message.setDataHandler(handler);
             if (recipients.indexOf(',') > 0)
