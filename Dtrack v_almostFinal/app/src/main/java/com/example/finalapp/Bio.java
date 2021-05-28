@@ -13,7 +13,7 @@ public class Bio {
         this.bg = bg;
         this.bp = bp;
         this.weight = weight;
-        this.date = date;
+        this.date = date;                                   //this java class comprises of getters and setters to fetch vitals from firebase
     }
     public String getDate() {
         return date;
