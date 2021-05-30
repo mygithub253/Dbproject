@@ -1,0 +1,21 @@
+How hardware and software are linked?
+--"int val=analogRead(A0);
+  Serial.println(val); 
+  Firebase.pushInt("bgvalue", val);"
+--THIS BLOCK OF CODE GETS VALUE FROM A0 PIN, WHICH IS CONNECTED TO OPAMP AND PUSHES IT 
+  TO "bgvalue" NODE ON FIREBASE
+
+ON APP SIDE
+--"reference.child("bgvalue").orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //bgvalue = snapshot.getValue().toString();
+                String val= snapshot.getValue().toString();
+                val=val.substring(1,val.length()-1);
+                String[] sparate=val.split("=");
+                bgvalue=sparate[1];                                                        //gets sensor data from firebase and sends to homepage.java on sucessful login
+            }"
+	THIS BLOCK OF CODE GETS VALUE FROM "bgvalue" and stores it in variable bgval after splitting
+	INCOMING STRING FROM FIREBASE.
+	THIS VALUE IS THEN DISPLAYED ON APP USING EDITTEXT
+

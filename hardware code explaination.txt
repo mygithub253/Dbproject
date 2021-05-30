@@ -1,6 +1,56 @@
-#include <ESP8266WiFi.h>
-#include <FirebaseArduino.h>
-imports modules required for esp8266 and for pushing to firebase
+"#include <ESP8266WiFi.h>
+#include <FirebaseArduino.h>"--"Importing esp and firebase libraries"
 
- Firebase.pushInt("bgvalue", val);
-pushes values to firebase under bgvalue
+
+"#define FIREBASE_HOST "ADD HOST NAME"
+#define FIREBASE_AUTH "ADD FIREBASE SECRET"
+#define WIFI_SSID "ADD WIFI NAME"-------------"Firebase host name,database secret and wifi password goes here"
+#define WIFI_PASSWORD "ADD WIFI PASSWORD""
+
+
+int photoDiode=2; ----------"setting pin 2 of ESP8266 as input to analog values from opamp"
+
+
+void setup() {
+  Serial.begin(9600);
+
+
+   pinMode(photoDiode,OUTPUT);-------"gets analog value from sensor"
+   digitalWrite(photoDiode,HIGH);------"sends 5 v to phtodiode"
+  
+
+// connect to wifi.
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("connecting");
+  while (WiFi.status() != WL_CONNECTED) {---------"if wifi credentials match continue with connection"
+    Serial.print(".");
+    delay(500);
+  }
+
+
+  Serial.println();
+  Serial.print("connected: ");
+  Serial.println(WiFi.localIP());
+  
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);-----"Authentication on Firebase"
+}
+
+int n = 0;
+
+void loop() {
+  // set value
+  int val=analogRead(A0);------"read A0 value which comes from opamp.ie Intensity"
+  Serial.println(val); 
+
+
+  Firebase.pushInt("bgvalue", val);
+  // handle error
+  if (Firebase.failed()) {-----------------"push A0 digital value to firebase"
+      Serial.print("setting /number failed:");
+      Serial.println(Firebase.error());  
+      return;
+  }
+  delay(2000)----------------"adding 2sec delay betwween data sent to firebase"
+
+
+}
