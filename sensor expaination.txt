@@ -1,3 +1,10 @@
+Sensor details:
+--the photo diode is connected in reverse saturation and NIR diode in forward bias
+--the reverse current from phtodiode varies with light intensity from NIR diode
+--the cureent is converted to proportional voltage using op-amp in current-voltage stage
+--capacitor acts to increase bandwith of values measured
+--"Vf"==-"If"x"Rf"
+--Voltage sampled is in analog which is converted to digital on ESP8266 
 OP-AMP:
 --PIN-6 : FEEDBACK LOOP THROUGH 8.2K AND 1uF CAPACITOR
 --PIN-4 AND 3 : GROUND
